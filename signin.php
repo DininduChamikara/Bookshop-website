@@ -34,7 +34,7 @@
 					<button class="bttn" type="submit">Log In</button>
 				</div>
 				<div class="form-group">
-					Previously Loged In <a class="signup" href="./edit-products.php"><u>Admin View</u></a>
+					Previously Loged In <a class="signup" href="./view-products.php"><u>Admin View</u></a>
 				</div>
 			</form>
 		</div>

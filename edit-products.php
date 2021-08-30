@@ -1,7 +1,36 @@
 <?php
 include "config.php";
 
+
+///////////
+if(isset($_GET['id'])){
+
+  $book_id = $_GET['id'];
+
+  // query 
+  $sql = "Select * from book where id = '$book_id'";
+
+  $result = $conn->query($sql);
+
+  if($row = $result->fetch_assoc()){
+      $title = $row['title'];
+      $category = $row['category'];
+      $author =$row['author'];
+      $price = $row['price'];
+      $quantity = $row['quantity'];
+      $description = $row['description'];
+      $image = $row['image'];
+      $id = $row['id'];
+             
+  }
+}
+
+
+
+///////////
 if (isset($_POST['add'])) {
+
+  $book_id = $_GET['id'];
 
   $title = $_POST['title'];
   $category = $_POST['category'];
@@ -14,19 +43,23 @@ if (isset($_POST['add'])) {
   $image = $_FILES['image']['tmp_name'];
   $imgContent = addslashes((file_get_contents($image)));
 
-  $sql = "INSERT INTO book(title, category, author, price, quantity, description, image) 
-    VALUES ('$title','$category','$author','$price','$quantity', '$description', '$imgContent')";
+  //  $sql = "INSERT INTO book(title, category, author, price, quantity, description, image) 
+  //    VALUES ('$title','$category','$author','$price','$quantity', '$description', '$imgContent')";
+
+   $sql = "UPDATE book set title='$title', category='$category', author='$author', price='$price', quantity='$quantity', description='$description', image='$imgContent' where id = '4' ";
 
   $result = $conn->query($sql);
 
   if ($result == TRUE) {
     echo "New record created successfully";
-    header("location: edit-products.php");
+    header("location: view-products.php");
   } else {
     echo "Error:" . $sql . "<br>" . $conn->error;
   }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -115,8 +148,8 @@ if (isset($_POST['add'])) {
             <input type="file" name="image" onchange="readURL(this)">
             <!-- <img src="./images/closed-old-book-in-brown-cover-vector-9187785-removebg-preview.png" alt=""> -->
             <!--Dinindu Test 1-->
-            <br><br>
-            <img id="previewImage" alt="book image" />
+            <br>
+            <img id="previewImage" alt="book image" width="150px" height="200px" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image']); ?>"/>
           </div>
         </div>
         <!--////////////////-->
@@ -124,22 +157,22 @@ if (isset($_POST['add'])) {
         <!--////////////////-->
         <div class="right">
           <!-- <form class="editForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST"> -->
-          <input type="text" name="title" id="title" placeholder="Title">
-          <input type="text" name="author" id="author" placeholder="Author"><br>
-          <input type="number" name="price" id="price" placeholder="Price">
-          <input type="number" name="quantity" id="quantity" placeholder="Quantity">
+          <input type="text" name="title" id="title" value ="<?php echo $title; ?>">
+          <input type="text" name="author" id="author" value ="<?php echo $author; ?>"><br>
+          <input type="text" name="price" id="price" value ="<?php echo $price; ?>"><br>
+          <input type="number" name="quantity" id="quantity" value ="<?php echo $quantity; ?>">
           <div>
-            <select class="category" name="category">
-              <option value="Select" selected disabled>Category</option>
+            <select class="category" name="category" id="category">
+              <option value="Select" selected disabled><?php echo $category; ?></option>
               <option value="Classic">Classic</option>
               <option value="Comic">Comic</option>
               <option value="Sci-Fi">Sci-Fi</option>
               <option value="Sort Story">Sort Story</option>
               <option value="Biographies">Biographies</option>
               <option value="Historical">Historical</option>
-              <textarea name="description" placeholder="Book Description"></textarea>
+              <textarea name="description" placeholder="Book Description"><?php echo $description; ?></textarea>
             </select>
-            <input type="submit" name="add" value="Add">
+            <input type="submit" name="add" value="Update">
             <!-- <span><i class='bx bx-chevron-down'></i></span> -->
           </div>
         </div>

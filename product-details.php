@@ -36,6 +36,7 @@ if (isset($_GET['id'])) {
     <div class="navigation container">
       <div class="logo">
         <h1>Damayanthi Book Shop</h1>
+        <h3>Welcome, Guest!</h3>
       </div>
 
       <div class="menu">

@@ -126,7 +126,7 @@ if (isset($_POST['add'])) {
           <!-- <form class="editForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST"> -->
           <input type="text" name="title" id="title" placeholder="Title">
           <input type="text" name="author" id="author" placeholder="Author"><br>
-          <input type="number" name="price" id="price" placeholder="Price">
+          <input type="text" name="price" id="price" placeholder="Price"><br>
           <input type="number" name="quantity" id="quantity" placeholder="Quantity">
           <div>
             <select class="category" name="category">
