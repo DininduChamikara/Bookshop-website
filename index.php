@@ -1,11 +1,37 @@
 <?php
 require './config.php';
 
-$sql = "SELECT * FROM book ORDER BY price DESC LIMIT 4";
+$sql = "SELECT * FROM book ORDER BY book_price DESC LIMIT 4";
 $result = $conn->query($sql);
 
-$sqllatest = "SELECT * FROM book ORDER BY title DESC LIMIT 8";
+$sqllatest = "SELECT * FROM book ORDER BY book_name DESC LIMIT 8";
 $resultlatest = $conn->query($sqllatest);
+
+?>
+
+<?php
+
+$customername = 'Guest';
+$customer_id = 0;
+
+//include "config.php";
+
+if(isset($_GET['customer_id'])){
+
+$customer_id = $_GET['customer_id'];
+
+$get_pro = "select * from customer where id='$customer_id'";
+
+$run_pro = mysqli_query($conn,$get_pro);
+
+
+$row_pro = mysqli_fetch_array($run_pro);
+
+  if($row_pro){
+    $customername = $row_pro['firstName'];
+  }
+
+}
 
 ?>
 
@@ -23,6 +49,8 @@ $resultlatest = $conn->query($sqllatest);
   <!-- Custom StyleSheet -->
   <link rel="stylesheet" href="./css/styles.css" />
   <title>Damayanthi Book Shop</title>
+
+  
 </head>
 
 <body>
@@ -33,6 +61,7 @@ $resultlatest = $conn->query($sqllatest);
       <div class="navigation container">
         <div class="logo">
           <h1>Damayanthi Book Shop</h1>
+          <h3>Welcome, <?php echo $customername ?>!</h3>
         </div>
 
         <div class="menu">
@@ -60,6 +89,9 @@ $resultlatest = $conn->query($sqllatest);
             </li>
             <li class="nav-item">
               <a href="./signin.php" class="nav-link">Account</a>
+            </li>
+            <li class="nav-item">
+              <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account-2</a>
             </li>
             <!-- <li class="nav-item">
               <a href="cart.php" class="nav-link icon"><i class="bx bx-shopping-bag"></i></a>
@@ -200,7 +232,7 @@ $resultlatest = $conn->query($sqllatest);
 
             <div class="product">
               <div class="product-header">
-                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image']); ?>" alt="">
+                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image_url']); ?>">
                 <!-- <ul class="icons">
                   <span><i class="bx bx-heart"></i></span>
                   <a href="cart.php"> <span><i class="bx bx-shopping-bag"></i></span>
@@ -210,7 +242,7 @@ $resultlatest = $conn->query($sqllatest);
               </div>
               <div class="product-footer">
                 <a href="product-details.php">
-                  <h3><?php echo $row['title'] ?></h3>
+                  <h3><?php echo $row['book_name'] ?></h3>
                 </a>
                 <!-- <div class="rating">
                   <i class="bx bxs-star"></i>
@@ -220,7 +252,7 @@ $resultlatest = $conn->query($sqllatest);
                   <i class="bx bx-star"></i>
                 </div> -->
                 <br>
-                <h4 class="price">$<?php echo $row['price'] ?></h4>
+                <h4 class="price">$<?php echo $row['book_price'] ?></h4>
               </div>
             </div>
 
@@ -243,7 +275,7 @@ $resultlatest = $conn->query($sqllatest);
 
             <div class="product">
               <div class="product-header">
-                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rowlatest['image']); ?>" alt="">
+                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rowlatest['image_url']); ?>" alt="">
                 <!-- <ul class="icons">
                   <span><i class="bx bx-heart"></i></span>
                   <a href="cart.php"> <span><i class="bx bx-shopping-bag"></i></span>
@@ -253,7 +285,7 @@ $resultlatest = $conn->query($sqllatest);
               </div>
               <div class="product-footer">
                 <a href="product-details.php">
-                  <h3><?php echo $rowlatest['title'] ?></h3>
+                  <h3><?php echo $rowlatest['book_name'] ?></h3>
                 </a>
                 <!-- <div class="rating">
                   <i class="bx bxs-star"></i>
@@ -263,7 +295,7 @@ $resultlatest = $conn->query($sqllatest);
                   <i class="bx bx-star"></i>
                 </div> -->
                 <br>
-                <h4 class="price">$<?php echo $rowlatest['price'] ?></h4>
+                <h4 class="price">$<?php echo $rowlatest['book_price'] ?></h4>
               </div>
             </div>
 

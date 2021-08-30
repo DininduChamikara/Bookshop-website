@@ -36,6 +36,7 @@ if (isset($_GET['type'])) {
     <div class="navigation container">
       <div class="logo">
         <h1>Damayanthi Book Shop</h1>
+        <h3>Welcome, Guest!</h3>
       </div>
 
       <div class="menu">
@@ -63,6 +64,9 @@ if (isset($_GET['type'])) {
           </li>
           <li class="nav-item">
             <a href="./signin.php" class="nav-link">Account</a>
+          </li>
+          <li class="nav-item">
+            <a href="./signin.php" class="nav-link">Account-2</a>
           </li>
         </ul>
       </div>

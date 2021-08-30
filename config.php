@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password ="";
-$dbname = "bookshop";
+$dbname = "damayanthi_bookshop";
 
 // Create the conncection
 $conn = new mysqli($servername,$username,$password,$dbname);

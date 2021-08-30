@@ -105,6 +105,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0.9;
+  padding: 10px;
 }
 
 .logl h1{
@@ -412,6 +413,7 @@ li {
   padding: 1.2rem 4rem;
   color: #fff;
   font-weight: 600;
+  font-size: 1.5rem;
   text-transform: uppercase;
   margin-top: 3rem;
 }
