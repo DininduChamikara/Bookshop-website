@@ -79,7 +79,7 @@ $row_pro = mysqli_fetch_array($run_pro);
               <a href="#home" class="nav-link scroll-link">Home</a>
             </li>
             <li class="nav-item">
-              <a href="./product.php" class="nav-link">Products</a>
+              <a href="./product.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Products</a>
             </li>
             <li class="nav-item">
               <a href="#footer" class="nav-link scroll-link">About</a>
@@ -87,11 +87,9 @@ $row_pro = mysqli_fetch_array($run_pro);
             <li class="nav-item">
               <a href="#footer" class="nav-link scroll-link">Contact</a>
             </li>
+       
             <li class="nav-item">
-              <a href="./signin.php" class="nav-link">Account</a>
-            </li>
-            <li class="nav-item">
-              <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account-2</a>
+              <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account</a>
             </li>
             <!-- <li class="nav-item">
               <a href="cart.php" class="nav-link icon"><i class="bx bx-shopping-bag"></i></a>
@@ -127,8 +125,8 @@ $row_pro = mysqli_fetch_array($run_pro);
     <section class="advert section">
       <div class="advert-center container">
         <div class="advert-box">
-          <a href="product.php">
-          <!-- <a href="product.php?type=classic"> -->
+          <!-- <a href="product.php"> -->
+          <a href="product.php?type=classic&customer_id=<?php echo $customer_id; ?>">
             <div class="dotted">
               <div class="content">
                 <h2>
@@ -143,7 +141,8 @@ $row_pro = mysqli_fetch_array($run_pro);
         </div>
 
         <div class="advert-box">
-          <a href="product.php">
+          <!-- <a href="product.php"> -->
+          <a href="product.php?type=comic&customer_id=<?php echo $customer_id; ?>">
             <div class="dotted">
               <div class="content">
                 <h2>
@@ -158,7 +157,8 @@ $row_pro = mysqli_fetch_array($run_pro);
         </div>
 
         <div class="advert-box">
-          <a href="product.php">
+          <!-- <a href="product.php"> -->
+          <a href="product.php?type=sci-fi&customer_id=<?php echo $customer_id; ?>">
             <div class="dotted">
               <div class="content">
                 <h2>
@@ -173,7 +173,8 @@ $row_pro = mysqli_fetch_array($run_pro);
         </div>
 
         <div class="advert-box">
-          <a href="product.php">
+          <!-- <a href="product.php"> -->
+          <a href="product.php?type=short story&customer_id=<?php echo $customer_id; ?>">
             <div class="dotted">
               <div class="content">
                 <h2>
@@ -188,7 +189,8 @@ $row_pro = mysqli_fetch_array($run_pro);
         </div>
 
         <div class="advert-box">
-          <a href="product.php">
+          <!-- <a href="product.php"> -->
+          <a href="product.php?type=biographies&customer_id=<?php echo $customer_id; ?>">
             <div class="dotted">
               <div class="content">
                 <h2>
@@ -203,7 +205,8 @@ $row_pro = mysqli_fetch_array($run_pro);
         </div>
 
         <div class="advert-box">
-          <a href="product.php">
+          <!-- <a href="product.php"> -->
+          <a href="product.php?type=historical&customer_id=<?php echo $customer_id; ?>">
             <div class="dotted">
               <div class="content">
                 <h2>
@@ -231,6 +234,7 @@ $row_pro = mysqli_fetch_array($run_pro);
           <?php while ($row = $result->fetch_assoc()) { ?>
 
             <div class="product">
+            <a href="product-details.php?id=<?php echo $row['id']; ?>&customer_id=<?php echo $customer_id; ?>&type=<?php echo $row['category']; ?>">
               <div class="product-header">
                 <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image_url']); ?>">
                 <!-- <ul class="icons">
@@ -241,7 +245,7 @@ $row_pro = mysqli_fetch_array($run_pro);
                 </ul> -->
               </div>
               <div class="product-footer">
-                <a href="product-details.php">
+                <!-- <a href="product-details.php"> -->
                   <h3><?php echo $row['book_name'] ?></h3>
                 </a>
                 <!-- <div class="rating">
@@ -274,6 +278,7 @@ $row_pro = mysqli_fetch_array($run_pro);
           <?php while ($rowlatest = $resultlatest->fetch_assoc()) { ?>
 
             <div class="product">
+            <a href="product-details.php?id=<?php echo $rowlatest['id']; ?>&customer_id=<?php echo $customer_id; ?>&type=<?php echo $rowlatest['category']; ?>">
               <div class="product-header">
                 <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rowlatest['image_url']); ?>" alt="">
                 <!-- <ul class="icons">

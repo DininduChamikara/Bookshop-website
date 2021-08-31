@@ -125,7 +125,7 @@
               <a href="./index.php?customer_id=<?php echo $customer_id; ?>" class="nav-link scroll-link">Home</a>
             </li>
             <li class="nav-item">
-              <a href="./product.php?customer_id=<?php echo $customerId; ?>" class="nav-link">Products</a>
+              <a href="./product.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Products</a>
             </li>
             <li class="nav-item">
               <a href="#footer" class="nav-link scroll-link">About</a>
@@ -133,11 +133,9 @@
             <li class="nav-item">
               <a href="#footer" class="nav-link scroll-link">Contact</a>
             </li>
+        
             <li class="nav-item">
-              <a href="./signin.php" class="nav-link">Account</a>
-            </li>
-            <li class="nav-item">
-              <a href="./signin.php" class="nav-link">Account-2</a>
+              <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account</a>
             </li>
             <!-- <li class="nav-item">
               <a href="cart.php" class="nav-link icon"><i class="bx bx-shopping-bag"></i></a>
