@@ -8,9 +8,35 @@ if (isset($_GET['type'])) {
   $sql = "SELECT * FROM book WHERE category = '$type'";
   $result = $conn->query($sql);
   }else{
-  $sql = "SELECT * FROM book ORDER BY title";
+  $sql = "SELECT * FROM book ORDER BY book_name";
   $result = $conn->query($sql);
   }
+?>
+
+<?php
+
+$customername = 'Guest';
+$customer_id = 0;
+
+//include "config.php";
+
+if(isset($_GET['customer_id'])){
+
+$customer_id = $_GET['customer_id'];
+
+$get_pro = "select * from customer where id='$customer_id'";
+
+$run_pro = mysqli_query($conn,$get_pro);
+
+
+$row_pro = mysqli_fetch_array($run_pro);
+
+  if($row_pro){
+    $customername = $row_pro['firstName'];
+  }
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +62,7 @@ if (isset($_GET['type'])) {
     <div class="navigation container">
       <div class="logo">
         <h1>Damayanthi Book Shop</h1>
-        <h3>Welcome, Guest!</h3>
+        <h3>Welcome, <?php echo $customername ?>!</h3>
       </div>
 
       <div class="menu">
@@ -51,10 +77,10 @@ if (isset($_GET['type'])) {
 
         <ul class="nav-list">
           <li class="nav-item">
-            <a href="./index.php" class="nav-link">Home</a>
+            <a href="./index.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Home</a>
           </li>
           <li class="nav-item">
-            <a href="./product.php" class="nav-link">Products</a>
+            <a href="./product.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Products</a>
           </li>
           <li class="nav-item">
             <a href="#footer" class="nav-link scroll-link">About</a>
@@ -62,11 +88,9 @@ if (isset($_GET['type'])) {
           <li class="nav-item">
             <a href="#footer" class="nav-link scroll-link">Contact</a>
           </li>
+         
           <li class="nav-item">
-            <a href="./signin.php" class="nav-link">Account</a>
-          </li>
-          <li class="nav-item">
-            <a href="./signin.php" class="nav-link">Account-2</a>
+            <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account</a>
           </li>
         </ul>
       </div>
@@ -95,15 +119,15 @@ if (isset($_GET['type'])) {
     <div class="product-center container">
       <?php if ($result->num_rows > 0) { ?>
         <?php while ($row = $result->fetch_assoc()) { ?>
-          <a href="product-details.php?id=<?php echo $row['id']; ?>">
+          <a href="product-details.php?id=<?php echo $row['id']; ?>&customer_id=<?php echo $customer_id; ?>&type=<?php echo $row['category']; ?>">
             <div class="product">
               <div class="product-header">
-                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image']); ?>" alt="">
+                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image_url']); ?>" alt="">
               </div>
               <div class="product-footer">
-                <h3><?php echo $row['title'] ?></h3>
+                <h3><?php echo $row['book_name'] ?></h3>
                 <br>
-                <h4 class="price">$<?php echo $row['price'] ?></h4>
+                <h4 class="price">$<?php echo $row['book_price'] ?></h4>
               </div>
             </div>
           </a>

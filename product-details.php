@@ -8,7 +8,52 @@ if (isset($_GET['id'])) {
   $sql = "SELECT * FROM book WHERE id = '$id'";
 
   $result = $conn->query($sql);
+
+  // $related_sql = "SELECT * FROM book WHERE id = '$id' AND category = '' ";
+
 }
+?>
+
+<?php
+require './config.php';
+
+if (isset($_GET['type'])) {
+
+  $related_type = $_GET['type'];
+  
+  $related_sql = "SELECT * FROM book WHERE category = '$related_type'";
+  $related_result = $conn->query($related_sql);
+  }else{
+  // $related_sql = "SELECT * FROM book ORDER BY book_name";
+  // $related_result = $conn->query($related_sql);
+  }
+?>
+
+
+<?php
+
+$customername = 'Guest';
+$customer_id = 0;
+
+//include "config.php";
+
+if(isset($_GET['customer_id'])){
+
+$customer_id = $_GET['customer_id'];
+
+$get_pro = "select * from customer where id='$customer_id'";
+
+$run_pro = mysqli_query($conn,$get_pro);
+
+
+$row_pro = mysqli_fetch_array($run_pro);
+
+  if($row_pro){
+    $customername = $row_pro['firstName'];
+  }
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +81,7 @@ if (isset($_GET['id'])) {
     <div class="navigation container">
       <div class="logo">
         <h1>Damayanthi Book Shop</h1>
-        <h3>Welcome, Guest!</h3>
+        <h3>Welcome, <?php echo $customername ?>!</h3>
       </div>
 
       <div class="menu">
@@ -50,11 +95,11 @@ if (isset($_GET['id'])) {
         </div>
 
         <ul class="nav-list">
-          <li class="nav-item">
-            <a href="./index.php" class="nav-link">Home</a>
+        <li class="nav-item">
+            <a href="./index.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Home</a>
           </li>
           <li class="nav-item">
-            <a href="./product.php" class="nav-link">Products</a>
+            <a href="./product.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Products</a>
           </li>
           <li class="nav-item">
             <a href="#footer" class="nav-link scroll-link">About</a>
@@ -62,8 +107,9 @@ if (isset($_GET['id'])) {
           <li class="nav-item">
             <a href="#footer" class="nav-link scroll-link">Contact</a>
           </li>
+         
           <li class="nav-item">
-            <a href="./signin.php" class="nav-link">Account</a>
+            <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account</a>
           </li>
           <!-- <li class="nav-item">
             <a href="./cart.php" class="nav-link icon"><i class="bx bx-shopping-bag"></i></a>
@@ -90,7 +136,7 @@ if (isset($_GET['id'])) {
         <div class="details container-md">
           <div class="left">
             <div class="main">
-              <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image']); ?>" alt="">
+              <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image_url']); ?>" alt="">
             </div>
             <!-- <div class="thumbnails">
           <div class="thumbnail">
@@ -110,8 +156,8 @@ if (isset($_GET['id'])) {
 
           <div class="right">
             <span><?php echo $row['category'] ?></span>
-            <h1><?php echo $row['title'] ?> By <?php echo $row['author'] ?></h1>
-            <div class="price">$<?php echo $row['price'] ?></div>
+            <h1><?php echo $row['book_name'] ?> By <?php echo $row['author'] ?></h1>
+            <div class="price">$<?php echo $row['book_price'] ?></div>
             <!-- <form>
           <div>
             <select>
@@ -143,105 +189,44 @@ if (isset($_GET['id'])) {
   <section class="section featured">
     <div class="top container">
       <h1>Related Books</h1>
-      <a href="#" class="view-more">View more</a>
+       <!-- <a href="#" class="view-more">View more</a> -->
     </div>
 
     <div class="product-center container">
-      <div class="product">
-        <div class="pro">
-          <img src="./images/closed-old-book-in-brown-cover-vector-9187785-removebg-preview.png" alt="">
-          <ul class="icons">
-            <span><i class="bx bx-heart"></i></span>
-            <span><i class="bx bx-shopping-bag"></i></span>
-            <span><i class="bx bx-search"></i></span>
-          </ul>
-        </div>
-        <div class="product-footer">
-          <a href="#">
-            <h3>Book</h3>
-          </a>
-          <div class="rating">
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bx-star"></i>
-          </div>
-          <h4 class="price">$50</h4>
-        </div>
-      </div>
-      <div class="product">
-        <div class="pro">
-          <img src="./images/closed-old-book-in-brown-cover-vector-9187785-removebg-preview.png" alt="">
 
-          <ul class="icons">
-            <span><i class="bx bx-heart"></i></span>
-            <span><i class="bx bx-shopping-bag"></i></span>
-            <span><i class="bx bx-search"></i></span>
-          </ul>
-        </div>
-        <div class="product-footer">
-          <a href="#">
-            <h3>Book</h3>
-          </a>
-          <div class="rating">
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bx-star"></i>
-          </div>
-          <h4 class="price">$50</h4>
-        </div>
-      </div>
-      <div class="product">
-        <div class="pro">
-          <img src="./images/closed-old-book-in-brown-cover-vector-9187785-removebg-preview.png" alt="">
+    <?php if ($related_result->num_rows > 0) { ?>
+          <?php while ($row_related = $related_result->fetch_assoc()) { ?>
 
-          <ul class="icons">
-            <span><i class="bx bx-heart"></i></span>
-            <span><i class="bx bx-shopping-bag"></i></span>
-            <span><i class="bx bx-search"></i></span>
-          </ul>
-        </div>
-        <div class="product-footer">
-          <a href="#">
-            <h3>Book</h3>
-          </a>
-          <div class="rating">
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bx-star"></i>
-          </div>
-          <h4 class="price">$50</h4>
-        </div>
-      </div>
-      <div class="product">
-        <div class="pro">
-          <img src="./images/closed-old-book-in-brown-cover-vector-9187785-removebg-preview.png" alt="">
+            <div class="product">
+            <a href="product-details.php?id=<?php echo $row_related['id']; ?>&customer_id=<?php echo $customer_id; ?>&type=<?php echo $row_related['category']; ?>">
+              <div class="product-header">
+                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row_related['image_url']); ?>" alt="">
+                <!-- <ul class="icons">
+                  <span><i class="bx bx-heart"></i></span>
+                  <a href="cart.php"> <span><i class="bx bx-shopping-bag"></i></span>
+                  </a>
+                  <span><i class="bx bx-search"></i></span>
+                </ul> -->
+              </div>
+              <div class="product-footer">
+                <a href="product-details.php">
+                  <h3><?php echo $row_related['book_name'] ?></h3>
+                </a>
+                <!-- <div class="rating">
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bx-star"></i>
+                </div> -->
+                <br>
+                <h4 class="price">$<?php echo $row_related['book_price'] ?></h4>
+              </div>
+            </div>
 
-          <ul class="icons">
-            <span><i class="bx bx-heart"></i></span>
-            <span><i class="bx bx-shopping-bag"></i></span>
-            <span><i class="bx bx-search"></i></span>
-          </ul>
-        </div>
-        <div class="product-footer">
-          <a href="#">
-            <h3>Book</h3>
-          </a>
-          <div class="rating">
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bx-star"></i>
-          </div>
-          <h4 class="price">$50</h4>
-        </div>
-      </div>
+          <?php } ?>
+        <?php } ?>
+
     </div>
   </section>
 

@@ -79,9 +79,7 @@ if (isset($_POST['add'])) {
           <li class="nav-item">
             <a href="#footer" class="nav-link scroll-link">Contact</a>
           </li>
-          <li class="nav-item">
-            <a href="./signin.php" class="nav-link">Account</a>
-          </li>
+         
           <!-- <li class="nav-item">
             <a href="./cart.php" class="nav-link icon"><i class="bx bx-shopping-bag"></i></a>
           </li> -->
