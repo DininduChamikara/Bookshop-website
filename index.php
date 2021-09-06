@@ -91,9 +91,9 @@ $row_pro = mysqli_fetch_array($run_pro);
             <li class="nav-item">
               <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account</a>
             </li>
-            <!-- <li class="nav-item">
-              <a href="cart.php" class="nav-link icon"><i class="bx bx-shopping-bag"></i></a>
-            </li> -->
+            <li class="nav-item">
+              <a href="./cart.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">My Cart</a>
+            </li>
           </ul>
         </div>
 
