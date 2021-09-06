@@ -1,6 +1,10 @@
 <?php
 require './config.php';
 
+$id = 0;
+$quantity = 1;
+
+
 if (isset($_GET['id'])) {
 
   $id = $_GET['id'];
@@ -14,8 +18,9 @@ if (isset($_GET['id'])) {
 }
 ?>
 
+
+
 <?php
-require './config.php';
 
 if (isset($_GET['type'])) {
 
@@ -31,7 +36,6 @@ if (isset($_GET['type'])) {
 
 
 <?php
-
 $customername = 'Guest';
 $customer_id = 0;
 
@@ -111,9 +115,9 @@ $row_pro = mysqli_fetch_array($run_pro);
           <li class="nav-item">
             <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account</a>
           </li>
-          <!-- <li class="nav-item">
-            <a href="./cart.php" class="nav-link icon"><i class="bx bx-shopping-bag"></i></a>
-          </li> -->
+          <li class="nav-item">
+              <a href="./cart.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">My Cart</a>
+          </li>
         </ul>
       </div>
 
@@ -158,23 +162,24 @@ $row_pro = mysqli_fetch_array($run_pro);
             <span><?php echo $row['category'] ?></span>
             <h1><?php echo $row['book_name'] ?> By <?php echo $row['author'] ?></h1>
             <div class="price">$<?php echo $row['book_price'] ?></div>
-            <!-- <form>
-          <div>
-            <select>
-              <option value="Select" selected disabled>Select</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-            <span><i class='bx bx-chevron-down'></i></span>
-          </div>
-        </form> -->
+            
 
-            <form class="form">
-              <input type="text" placeholder="1">
-              <a href="cart.html" class="addCart">Add To Cart</a>
+            <!-- <form method="GET" class="form" >
+              <input id=qty name="quantity" type="number" placeholder="1" min="1" style="width: 50px;">
+              <a href="./cart.php?id=<?php echo $row['id']; ?>&customer_id=<?php echo $customer_id; ?>&quantity=<?php ?>"name="add_to_cart" class="addCart">Add To Cart</a>
+              <!-- <input type="submit" name="add_to_cart" class="addCart" value="Add To Cart" > -->
+
+            </form> -->
+
+            <form action="cart.php" method="GET" class="form" >
+              <input name="id" type="hidden" value="<?php echo $row['id']; ?>">
+              <input name="customer_id" type="hidden" value="<?php echo $customer_id; ?>" >
+              <input name="quantity" type="number" value="1" placeholder="1" min="1" style="width: 50px;">
+              <input type="submit" name="add_to_cart" class="addCart" value="Add To Cart" >
+              
+
             </form>
+
             <h3>Book Detail</h3>
             <p><?php echo $row['description'] ?></p>
           </div>
@@ -182,6 +187,15 @@ $row_pro = mysqli_fetch_array($run_pro);
 
       <?php } ?>
     <?php } ?>
+
+  <?php
+    if(isset($_POST['add_to_cart'])){
+      $quantity = $_POST['quantity'];
+
+      echo "<script> alert('Book Added successfully ')</script>";
+      echo "<script> window.open('cart.php','_self')</script>";
+    }
+  ?>
 
   </section>
 
@@ -229,6 +243,7 @@ $row_pro = mysqli_fetch_array($run_pro);
 
     </div>
   </section>
+
 
   <!-- Footer -->
   <footer id="footer" class="section footer">
