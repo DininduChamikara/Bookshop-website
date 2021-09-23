@@ -238,11 +238,23 @@ if(isset($_GET["action"])){
 
     <center>
       <div>
-        <a class = "btn" href="./index.php?customer_id=<?php echo $customer_id; ?>">Continue Shopping</a>
-        <a class = "btn" href="checkout.html">Go To Checkout</a>  
+        <a class="btn" href="./index.php?customer_id=<?php echo $customer_id; ?>">Continue Shopping</a>
+        <!-- <a class="btn" href="./checkout.php?customer_id=<?php echo $customer_id; ?>">Go To Checkout</a>   -->
+        <button style="border: none;" class="btn" onclick="checkout_open();">Go To Checkout</button> 
       </div>
     </center>
 
-    
+    <script>
+      function checkout_open(){
+        let temp = <?php echo $customer_id?>;
+
+        if(temp!=0){
+          window.open("checkout.php?customer_id=<?php echo $customer_id; ?>", "_self");
+        }
+        else{
+          alert('Log first before checkout!');
+        }
+      }
+    </script>
 
 </body>

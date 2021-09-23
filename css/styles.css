@@ -419,6 +419,20 @@ li {
 
 }
 
+/* for checkout */
+.col1 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col2 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+/* for checkout */
+
 
 @media only screen and (max-width: 1200px) {
   .header .hero-img {
