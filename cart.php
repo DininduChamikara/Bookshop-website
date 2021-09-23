@@ -233,6 +233,16 @@ if(isset($_GET["action"])){
 
         </table>
       </center>
+
     </div>
+
+    <center>
+      <div>
+        <a class = "btn" href="./index.php?customer_id=<?php echo $customer_id; ?>">Continue Shopping</a>
+        <a class = "btn" href="checkout.html">Go To Checkout</a>  
+      </div>
+    </center>
+
+    
 
 </body>

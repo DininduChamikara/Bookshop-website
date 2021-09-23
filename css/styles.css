@@ -416,7 +416,9 @@ li {
   font-size: 1.5rem;
   text-transform: uppercase;
   margin-top: 3rem;
+
 }
+
 
 @media only screen and (max-width: 1200px) {
   .header .hero-img {
@@ -1060,6 +1062,7 @@ form span {
   padding: 0.8rem 4rem;
   color: #fff;
   border-radius: 3rem;
+  
 }
 
 .product-detail h3 {
@@ -1181,8 +1184,12 @@ th:last-child {
   text-align: right;
 }
 
+
+
 @media only screen and (max-width: 567px) {
   .cart-info p {
     display: none;
   }
 }
+
+
