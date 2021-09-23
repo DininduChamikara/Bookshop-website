@@ -164,12 +164,6 @@ $row_pro = mysqli_fetch_array($run_pro);
             <div class="price">$<?php echo $row['book_price'] ?></div>
             
 
-            <!-- <form method="GET" class="form" >
-              <input id=qty name="quantity" type="number" placeholder="1" min="1" style="width: 50px;">
-              <a href="./cart.php?id=<?php echo $row['id']; ?>&customer_id=<?php echo $customer_id; ?>&quantity=<?php ?>"name="add_to_cart" class="addCart">Add To Cart</a>
-              <!-- <input type="submit" name="add_to_cart" class="addCart" value="Add To Cart" > -->
-
-            </form> -->
 
             <form action="cart.php" method="GET" class="form" >
               <input name="id" type="hidden" value="<?php echo $row['id']; ?>">
