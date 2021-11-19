@@ -912,6 +912,13 @@ li {
   }
 }
 
+/*Login Page newly add*/
+.login_header{
+  padding: 10px;
+  font-size: 30;
+}
+
+
 /* All Products */
 .section .top {
   display: flex;

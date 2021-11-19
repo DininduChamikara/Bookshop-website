@@ -277,8 +277,7 @@ if(isset($_GET["id"]) && isset($_GET["customer_id"])){
                                 ?>
 
                             <form class="row" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-
-                                   
+                                                               
                                     <div class="col-md-6">
                                         <label>First Name</label>
                                         <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="First Name" name="firstname" value="<?php echo $row_pro['firstName']?>" disabled>

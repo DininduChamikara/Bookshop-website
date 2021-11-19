@@ -169,7 +169,7 @@ $row_pro = mysqli_fetch_array($run_pro);
               <input name="id" type="hidden" value="<?php echo $row['id']; ?>">
               <input name="customer_id" type="hidden" value="<?php echo $customer_id; ?>" >
               <input name="quantity" type="number" value="1" placeholder="1" min="1" style="width: 50px;">
-              <input type="submit" name="add_to_cart" class="addCart" value="Add To Cart" >
+              <input style="width: 150px;" type="submit" name="add_to_cart" class="addCart" value="Add to Cart" >
               
 
             </form>
