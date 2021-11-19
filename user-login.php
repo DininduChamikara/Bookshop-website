@@ -167,8 +167,14 @@
         <!-- Login Start -->
         <div class="login" style="padding: 10px">
             <div class="container-fluid">
+            
                 <div class="row">
-                    <div class="col-lg-6" style="background-color: #FEF5E7; border: 1px solid;">    
+                    <div class="col-lg-6" style="background-color: #FEF5E7; border: 1px solid;">  
+                    <center>
+                      <h1 style="font-size:30px; padding-top:20px">Register</h1>
+                    </center>
+                   
+                    
                         <div class="register-form">
                           <br>
 
@@ -242,10 +248,14 @@
                     </div>
                     <div class="col-lg-6" style="background-color: #FEF5E7; border: 1px solid;">
                         <div class="login-form">
+                          <center>
+                            <h1 style="font-size:30px; padding-top:20px">Login</h1>
+                          </center>
                         <br>
                           <div class="row" style="margin-left: 0px"> 
 
                           <!--Changed here by Dinindu-->
+                          
                           
                             
 
