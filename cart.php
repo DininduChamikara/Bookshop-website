@@ -164,12 +164,12 @@ if(isset($_GET["action"])){
           <li class="nav-item">
             <a href="./product.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Products</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#footer" class="nav-link scroll-link">About</a>
           </li>
           <li class="nav-item">
             <a href="#footer" class="nav-link scroll-link">Contact</a>
-          </li>
+          </li> -->
          
           <li class="nav-item">
             <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account</a>
@@ -224,7 +224,7 @@ if(isset($_GET["action"])){
         ?>
         <tr>
           <td colspan="3" align="right">Total</td>
-          <td align="right">$ <?php echo number_format($total, 2); ?></td>
+          <td align="right">Rs. <?php echo number_format($total, 2); ?></td>
         </tr>
 
         <?php

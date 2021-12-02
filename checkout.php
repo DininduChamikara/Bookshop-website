@@ -142,12 +142,12 @@ if(isset($_GET["id"]) && isset($_GET["customer_id"])){
           <li class="nav-item">
             <a href="./product.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Products</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#footer" class="nav-link scroll-link">About</a>
           </li>
           <li class="nav-item">
             <a href="#footer" class="nav-link scroll-link">Contact</a>
-          </li>
+          </li> -->
          
           <li class="nav-item">
             <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account</a>
@@ -202,7 +202,7 @@ if(isset($_GET["id"]) && isset($_GET["customer_id"])){
         ?>
         <tr>
           <td colspan="3" align="right">Total</td>
-          <td align="right">$ <?php echo number_format($total, 2); ?></td>
+          <td align="right">Rs. <?php echo number_format($total, 2); ?></td>
         </tr>
 
         <?php
@@ -276,7 +276,7 @@ if(isset($_GET["id"]) && isset($_GET["customer_id"])){
                                     }
                                 ?>
 
-                            <form class="row" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                            <form class="row" action="payment.php" method="POST">
                                                                
                                     <div class="col-md-6">
                                         <label>First Name</label>
@@ -296,11 +296,11 @@ if(isset($_GET["id"]) && isset($_GET["customer_id"])){
                                     </div>
                                     <div class="col-md-6">
                                         <label>Delivery Address</label>
-                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="Enter the delivery address here" name="address">
+                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="Enter the delivery address here" name="address" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label>ZIP Code</label>
-                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="ZIP Code" name="repassword">
+                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="ZIP Code" name="repassword" required>
                                     </div>
                                     
                                     <div class="col-md-12">

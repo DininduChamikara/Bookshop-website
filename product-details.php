@@ -105,12 +105,12 @@ $row_pro = mysqli_fetch_array($run_pro);
           <li class="nav-item">
             <a href="./product.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Products</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#footer" class="nav-link scroll-link">About</a>
           </li>
           <li class="nav-item">
             <a href="#footer" class="nav-link scroll-link">Contact</a>
-          </li>
+          </li> -->
          
           <li class="nav-item">
             <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account</a>
@@ -161,7 +161,7 @@ $row_pro = mysqli_fetch_array($run_pro);
           <div class="right">
             <span><?php echo $row['category'] ?></span>
             <h1><?php echo $row['book_name'] ?> By <?php echo $row['author'] ?></h1>
-            <div class="price">$<?php echo $row['book_price'] ?></div>
+            <div class="price">Rs. <?php echo $row['book_price'] ?></div>
             
 
 
@@ -228,7 +228,7 @@ $row_pro = mysqli_fetch_array($run_pro);
                   <i class="bx bx-star"></i>
                 </div> -->
                 <br>
-                <h4 class="price">$<?php echo $row_related['book_price'] ?></h4>
+                <h4 class="price">Rs. <?php echo $row_related['book_price'] ?></h4>
               </div>
             </div>
 

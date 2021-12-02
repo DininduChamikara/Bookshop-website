@@ -127,12 +127,12 @@
             <li class="nav-item">
               <a href="./product.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Products</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="#footer" class="nav-link scroll-link">About</a>
             </li>
             <li class="nav-item">
               <a href="#footer" class="nav-link scroll-link">Contact</a>
-            </li>
+            </li> -->
         
             <li class="nav-item">
               <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account</a>
@@ -189,22 +189,41 @@
                                         $email = $_POST['email'];
                                         $mobile = $_POST['mobile'];
                                         $password = $_POST['password'];
-                                        
 
-                                        // SQL QUERY
-                                        $sql = "INSERT INTO customer(firstName, lastName, email, mobileNum, password) VALUES
-                                        ('$firstName', '$lastName', '$email', '$mobile','$password')";
-
-                                        // Execute the query
-                                     //   $result = $conn->query($sql);
-                                        $result = mysqli_query($conn, $sql);
-
-                                        if($result){
-                                            echo "<script> alert('Book Added successfully ')</script>";
-                                            echo "<script> window.open('user-login.php ','_self')</script>";
-                                        }else{
-                                            echo "Error:".$sql."<br>".$conn->error;
+                                        if(!preg_match("/^[a-zA-Z-' ]*$/",$firstName)) {
+                                          echo "<script>alert('Only letters and white space allowed for First Name')</script>";
+                                          echo "<script> window.open('user-login.php?customer_id=$customer_id ','_self')</script>";       
                                         }
+                                        elseif(!preg_match("/^[a-zA-Z-' ]*$/",$lastname)) {
+                                            echo "<script>alert('Only letters and white space allowed for Last Name')</script>";
+                                            echo "<script> window.open('user-login.php?customer_id=$customer_id ','_self')</script>";       
+                                        }
+                                        elseif(!preg_match("/^[^\s@]+@[^\s@]+\.[^\s@]+$/",$email)) {
+                                            echo "<script>alert('Invalid email')</script>";
+                                            echo "<script> window.open('user-login.php?customer_id=$customer_id ','_self')</script>";       
+                                        }
+                                        elseif(!preg_match("/^(?:7|0|(?:\+94))[0-9]{9,10}$/",$mobile)) {
+                                            echo "<script>alert('Invalid mobile number.')</script>";
+                                            echo "<script> window.open('user-login.php?customer_id=$customer_id ','_self')</script>";       
+                                        }
+                                        else{
+                                            // SQL QUERY
+                                            $sql = "INSERT INTO customer(firstName, lastName, email, mobileNum, password) VALUES
+                                            ('$firstName', '$lastName', '$email', '$mobile','$password')";
+
+                                            // Execute the query
+                                            // $result = $conn->query($sql);
+                                            $result = mysqli_query($conn, $sql);
+
+                                            if($result){
+                                                echo "<script> alert('You registered successfully ')</script>";
+                                                echo "<script> window.open('user-login.php ','_self')</script>";
+                                            }else{
+                                                echo "Error:".$sql."<br>".$conn->error;
+                                            }
+                                        }
+                                                                  
+                                       
                                     }
                                 ?>
 
@@ -213,27 +232,23 @@
                                    
                                     <div class="col-md-6">
                                         <label>First Name</label>
-                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="First Name" name="firstname">
+                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="First Name" name="firstname" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Last Name</label>
-                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="Last Name" name="lastname">
+                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="Last Name" name="lastname" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label>E-mail</label>
-                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="E-mail" name="email">
+                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="E-mail" name="email" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Mobile No</label>
-                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="Mobile No" name="mobile">
+                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="Mobile No" name="mobile" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Password</label>
-                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="Password" name="password">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Retype Password</label>
-                                        <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="Password" name="repassword">
+                                        <input class="form-control" style="font-size: 1.5rem" type="password" placeholder="Password" name="password" required>
                                     </div>
                                     
                                     <div class="col-md-12">
@@ -257,9 +272,6 @@
                           <!--Changed here by Dinindu-->
                           
                           
-                            
-
-                          
                             <form class="row" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                               <div class="col-md-6">
                                     <label>E-mail</label>
@@ -268,7 +280,7 @@
 
                               <div class="col-md-6">
                                     <label>Password</label>
-                                    <input class="form-control" style="font-size: 1.5rem" type="text" placeholder="Password" name="loginPassword">
+                                    <input class="form-control" style="font-size: 1.5rem" type="password" placeholder="Password" name="loginPassword">
                               </div>
                               <div class="col-md-12">
                               <button class="btn" name="login-submit" style="font-size: 1.5rem;" value="SUBMIT">Submit</button>
