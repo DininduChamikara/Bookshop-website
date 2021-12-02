@@ -82,12 +82,12 @@ $row_pro = mysqli_fetch_array($run_pro);
           <li class="nav-item">
             <a href="./product.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Products</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#footer" class="nav-link scroll-link">About</a>
           </li>
           <li class="nav-item">
             <a href="#footer" class="nav-link scroll-link">Contact</a>
-          </li>
+          </li> -->
          
           <li class="nav-item">
             <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account</a>
@@ -106,7 +106,7 @@ $row_pro = mysqli_fetch_array($run_pro);
 
   <!-- All Products -->
   <section class="section all-products" id="products">
-    <div class="top container">
+    <!-- <div class="top container">
       <h1>All Products</h1>
       <form>
         <select>
@@ -117,7 +117,7 @@ $row_pro = mysqli_fetch_array($run_pro);
         </select>
         <span><i class='bx bx-chevron-down'></i></span>
       </form>
-    </div>
+    </div> -->
 
     <div class="product-center container">
       <?php if ($result->num_rows > 0) { ?>
@@ -130,7 +130,7 @@ $row_pro = mysqli_fetch_array($run_pro);
               <div class="product-footer">
                 <h3><?php echo $row['book_name'] ?></h3>
                 <br>
-                <h4 class="price">$<?php echo $row['book_price'] ?></h4>
+                <h4 class="price">Rs. <?php echo $row['book_price'] ?></h4>
               </div>
             </div>
           </a>

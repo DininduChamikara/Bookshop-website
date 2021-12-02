@@ -10,6 +10,11 @@ $resultlatest = $conn->query($sqllatest);
 ?>
 
 <?php
+$sql_get_publisher = "SELECT * FROM publication";
+$publication_result = $conn->query($sql_get_publisher);
+?>
+
+<?php
 
 $customername = 'Guest';
 $customer_id = 0;
@@ -81,12 +86,12 @@ $row_pro = mysqli_fetch_array($run_pro);
             <li class="nav-item">
               <a href="./product.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Products</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="#footer" class="nav-link scroll-link">About</a>
             </li>
             <li class="nav-item">
               <a href="#footer" class="nav-link scroll-link">Contact</a>
-            </li>
+            </li> -->
        
             <li class="nav-item">
               <a href="./user-login.php?customer_id=<?php echo $customer_id; ?>" class="nav-link">Account</a>
@@ -237,26 +242,15 @@ $row_pro = mysqli_fetch_array($run_pro);
             <a href="product-details.php?id=<?php echo $row['id']; ?>&customer_id=<?php echo $customer_id; ?>&type=<?php echo $row['category']; ?>">
               <div class="product-header">
                 <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['image_url']); ?>">
-                <!-- <ul class="icons">
-                  <span><i class="bx bx-heart"></i></span>
-                  <a href="cart.php"> <span><i class="bx bx-shopping-bag"></i></span>
-                  </a>
-                  <span><i class="bx bx-search"></i></span>
-                </ul> -->
+              
               </div>
               <div class="product-footer">
                 <!-- <a href="product-details.php"> -->
                   <h3><?php echo $row['book_name'] ?></h3>
                 </a>
-                <!-- <div class="rating">
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bx-star"></i>
-                </div> -->
+              
                 <br>
-                <h4 class="price">$<?php echo $row['book_price'] ?></h4>
+                <h4 class="price">Rs. <?php echo $row['book_price'] ?></h4>
               </div>
             </div>
 
@@ -281,26 +275,14 @@ $row_pro = mysqli_fetch_array($run_pro);
             <a href="product-details.php?id=<?php echo $rowlatest['id']; ?>&customer_id=<?php echo $customer_id; ?>&type=<?php echo $rowlatest['category']; ?>">
               <div class="product-header">
                 <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($rowlatest['image_url']); ?>" alt="">
-                <!-- <ul class="icons">
-                  <span><i class="bx bx-heart"></i></span>
-                  <a href="cart.php"> <span><i class="bx bx-shopping-bag"></i></span>
-                  </a>
-                  <span><i class="bx bx-search"></i></span>
-                </ul> -->
+        
               </div>
               <div class="product-footer">
                 <a href="product-details.php">
                   <h3><?php echo $rowlatest['book_name'] ?></h3>
                 </a>
-                <!-- <div class="rating">
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bx-star"></i>
-                </div> -->
                 <br>
-                <h4 class="price">$<?php echo $rowlatest['book_price'] ?></h4>
+                <h4 class="price">Rs. <?php echo $rowlatest['book_price'] ?></h4>
               </div>
             </div>
 
@@ -329,84 +311,20 @@ $row_pro = mysqli_fetch_array($run_pro);
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="section">
-      <div class="testimonial-center container">
-        <div class="testimonial">
-          <span>&ldquo;</span>
-          <p>
-            Comment
-          </p>
-          <div class="rating">
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bx-star"></i>
-          </div>
-          <div class="img-cover">
-            <img src="./images/flat-business-man-user-profile-avatar-icon-vector-4333097-removebg-preview.png" alt="" />
-          </div>
-          <h4>Name</h4>
-        </div>
-        <div class="testimonial">
-          <span>&ldquo;</span>
-          <p>
-            Comment
-          </p>
-          <div class="rating">
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bx-star"></i>
-            <i class="bx bx-star"></i>
-          </div>
-          <div class="img-cover">
-            <img src="./images/flat-business-man-user-profile-avatar-icon-vector-4333097-removebg-preview.png" alt="" />
-          </div>
-          <h4>Name</h4>
-        </div>
-        <div class="testimonial">
-          <span>&ldquo;</span>
-          <p>
-            Comment
-          </p>
-          <div class="rating">
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bxs-star"></i>
-            <i class="bx bx-star"></i>
-          </div>
-          <div class="img-cover">
-            <img src="./images/flat-business-man-user-profile-avatar-icon-vector-4333097-removebg-preview.png" alt="" />
-          </div>
-          <h4>Name</h4>
-        </div>
-      </div>
-    </section>
-
     <!-- Brands -->
     <section class="section">
       <div class="brands-center container">
-        <div class="brand">
-          <img src="./images/build-your-brand-removebg-preview.png" alt="" />
-        </div>
-        <div class="brand">
-          <img src="./images/build-your-brand-removebg-preview.png" alt="" />
-        </div>
-        <div class="brand">
-          <img src="./images/build-your-brand-removebg-preview.png" alt="" />
-        </div>
-        <div class="brand">
-          <img src="./images/build-your-brand-removebg-preview.png" alt="" />
-        </div>
-        <div class="brand">
-          <img src="./images/build-your-brand-removebg-preview.png" alt="" />
-        </div>
-        <div class="brand">
-          <img src="./images/build-your-brand-removebg-preview.png" alt="" />
-        </div>
+
+      <?php if($publication_result->num_rows > 0) { ?>
+        <?php while($row_publication = $publication_result->fetch_assoc()){ ?>
+          <div class="brand">
+            <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row_publication['image']); ?>" alt="">
+          </div>
+
+       <?php } ?>
+
+   <?php } ?>
+            
       </div>
     </section>
   </main>
